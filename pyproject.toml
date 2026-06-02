@@ -1,0 +1,26 @@
+[project]
+name = "computational-imaging"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = "==3.13.*"
+dependencies = [
+    "astra-toolbox",
+    "datasets>=4.8.5",
+    "matplotlib>=3.10.9",
+    "numba>=0.65.1",
+    "numpy>=2.4.6",
+    "pillow>=12.2.0",
+    "scikit-image>=0.26.0",
+    "torch>=2.12.0",
+    "torchvision>=0.27.0",
+]
+
+[tool.uv]
+index-strategy = "unsafe-best-match"
+
+[[tool.uv.index]]
+url = "https://download.pytorch.org/whl/cu132"
+
+[tool.uv.sources]
+astra-toolbox = { path = "lib/astra-2.4.1/astra_toolbox-2.4.1-cp313-cp313-win_amd64.whl" }
