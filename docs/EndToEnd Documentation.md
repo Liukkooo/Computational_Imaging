@@ -290,7 +290,7 @@ The initialization of `torch.manual_seed(0)` prior to training guarantees the re
 
 ## 7. Metric evaluation
 
-### #### Metrics Used
+### Metrics Used
 
 - **PSNR (Peak Signal-to-Noise Ratio):** 
     Measures the ratio between the maximum possible power of a signal and the corrupting noise affecting its representation. Expressed in decibels (dB), higher values indicate better reconstruction quality. Formula:
