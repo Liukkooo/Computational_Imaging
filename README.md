@@ -115,7 +115,7 @@ This file is used later for visualization and interpretation.
 This notebook implements a complete image restoration pipeline based on a **ResU-Net** (Residual U-Net) neural network, trained end-to-end to remove noise and blur from RGB images.
 
 ### Project structure
-
+```text
 Google Drive (My Drive)/
 └── Computational Imaging/               # Root directory of your project on Drive
     │
@@ -140,7 +140,7 @@ Google Drive (My Drive)/
         │
         └── weights/                     # Model checkpoint preservation
             └── (Saved state dictionary file containing the best model weights)
-
+```
 
 The workflow covers: data loading, architecture definition, training, metric evaluation, and visual assessment.
 
