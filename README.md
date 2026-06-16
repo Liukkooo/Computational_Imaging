@@ -1,4 +1,4 @@
-# Computational_Imaging
+# Computational Imaging (S Group)
 ...
 ## 0. Data Degradation
 
