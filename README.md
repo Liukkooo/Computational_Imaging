@@ -171,12 +171,12 @@ The execution of the entire pipeline was performed using Google Colab's T4 GPU.
 | `WEIGHTS_DIR`        | `.../RESULT_DIR/weights`                 | Contains the model weights                               |
 | `RECONSTRUCTION_DIR` | `.../RESULT_DIR/reconstruction_examples` | Contains images reconstructed by the newly trained model |
  
-#### Main libraries
+#### Main libraries/imports
 
 - **PyTorch (`torch`, `torch.nn`, `torch.optim`)** — Deep learning framework used to define and train the network.
 - **torchvision** — Image transformations (`ToTensor`).
 - **HuggingFace datasets** — Dataset management in Arrow format.
-- **scikit-image (`psnr`, `ssim`)** — Image quality evaluation metrics.
+- **IPPy (`psnr`, `ssim`)** — Image quality evaluation metrics.
 - **NumPy / Pandas** — Numerical manipulation and results collection.
 - **Matplotlib / tqdm** — Progress bar visualization and plotting.
 
