@@ -2,6 +2,9 @@
 This repository contains the materials for the Computational Imaging Group S project on the ImageNet.
 
 The notebooks were originally developed and tested in a Google Colab environment using Google Drive for data storage; therefore, they are not intended for direct execution from a locally cloned repository. To reproduce the reported experiments, users should upload the notebooks and all required data/support files to Google Drive, open the notebooks in Google Colab, adapt the path definitions in the setup cells as needed, and run the notebooks within the Colab environment.
+
+Link to custom IPPy: https://drive.google.com/drive/folders/1cHNuDGN95OKejssWjVPc71kAbtyIWUqg?usp=sharing
+
 ## 0. Data Degradation
 
 This notebook generates a degraded version of a subset of the ImageNet-1K dataset to be used in subsequent image restoration and inverse problem experiments.
