@@ -109,7 +109,7 @@ This file is used later for visualization and interpretation.
 
 ---
 
-# 1. TvP Chambolle-Pock
+## 1. TvP Chambolle-Pock
 
 This repository/directory contains the Jupyter notebook `1.TvP_Chambolle_Pock.ipynb`, which implements and evaluates **Deblurring** and **Denoising** algorithms on images using the **Total p-Variation (TpV)** model.
 
@@ -781,3 +781,47 @@ Each method used in the two notebooks, with its source:
 - **Xavier/Glorot initialization** — X. Glorot, Y. Bengio, *Understanding the difficulty of training deep feedforward neural networks*, AISTATS 2010.
 - **Mixed-precision training (bf16)** — P. Micikevicius et al., *Mixed Precision Training*, ICLR 2018.
 - **ImageNet dataset** — J. Deng et al., *ImageNet: A Large-Scale Hierarchical Image Database*, CVPR 2009.
+
+---
+
+## 4. Hybrid PD Net + Total Variation
+
+This notebook (`4_Hybrid_PD_Net.ipynb`) implements a hybrid method combining a **Primal-Dual Net (PD-Net)** with **Total Variation (TV)** regularization for image deblurring and denoising operations.
+
+The notebook is structured to train and evaluate the network using pre-computed degraded inputs to ensure fair comparisons across models.
+
+### Key Sections
+
+1. **Configuration and Hyperparameters**
+   - **`BATCH_SIZE`**: 4
+   - **`EPOCH_NUMBER`**: 30
+   - **`LEARNING_RATE`**: 1e-4
+   - **`NUM_ITERATIONS`**: 7 (PD-Net iterations)
+   - **`CNN_FEATURES`**: 32
+   
+2. **Data Loading and Dataset Expansion**
+   The dataset is loaded from a HuggingFace Arrow format. A custom `DegradedDataset` class performs a virtual expansion of the dataset, associating each clean ground truth image with its multiple degraded versions (`y_005`, `y_010`, `y_050`, `y_100`) dynamically during the training process.
+
+3. **Model Factory**
+   Builds the `HybridLearnedPrimalDualTV` model leveraging custom `IPPy` operators. It initializes the convolutional layers using Xavier initialization to maintain training stability.
+
+4. **Training Loop**
+   - **Optimizer**: `AdamW`
+   - **Scheduler**: `ReduceLROnPlateau` (halves the LR when validation loss plateaus)
+   - **Loss Function**: `MSELoss`
+   - **Early Stopping**: Halts training if no improvements are seen on the validation loss for `PATIENCE_EARLY_STOPPING` (7) epochs.
+
+5. **Model Evaluation**
+   Evaluates the restored images across the 4 noise levels using:
+   - **PSNR (Peak Signal-to-Noise Ratio)**
+   - **SSIM (Structural Similarity Index)**
+   
+   The results are aggregated, averaged, and saved into a CSV file (`hybrid_metrics_per_noise_level.csv`).
+
+6. **Image Results and Plots**
+   - **Learning Curves**: Generates comprehensive plots showing Train vs Validation Loss (MSE) and PSNR across epochs.
+   - **Metrics Bar Charts**: Visualizes the mean PSNR and SSIM scores across different noise levels on the test set.
+   - **Visual Reconstruction Grid**: Creates a 2x4 image grid comparing the degraded inputs against the network's outputs for a selected test image, alongside the clean ground truth.
+
+### Setup and Requirements
+Designed to run on Google Colab with Google Drive mounted. Requires standard deep learning libraries (`torch`, `torchvision`), `datasets`, and the custom `IPPy` library.
